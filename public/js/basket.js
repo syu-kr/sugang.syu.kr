@@ -118,7 +118,7 @@ getRequest(year, semester)
     if (search) {
       const lowerSearch = search.toLowerCase()
       datas['data'] = datas['data'].filter((item) => {
-        return item['강좌명'].toLowerCase().includes(lowerSearch) || item['교수명'].toLowerCase().includes(lowerSearch) || item['학부(과)'].toLowerCase().includes(lowerSearch)
+        return item['강좌명'].toLowerCase().includes(lowerSearch) || item['교수명'].toLowerCase().includes(lowerSearch) || item['강좌번호'].toLowerCase().includes(lowerSearch)
       })
     }
     setPageOf(1)
