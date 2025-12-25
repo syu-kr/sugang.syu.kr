@@ -33,6 +33,8 @@ const setPageButtons = (pageNumber) => {
 
 const setPageOf = (pageNumber) => {
   let tbody_tag = ''
+  
+  document.getElementById('time').innerHTML = datas['time']
 
   setPageButtons(pageNumber)
 
@@ -46,11 +48,12 @@ const setPageOf = (pageNumber) => {
     <tr>
       <td align="center" style="border-right-width: 1px" nowrap><b>${i}</b></td>
       <td nowrap><span style="color: #5f6062;">${datas['data'][i - 1]['강좌번호']}</span></td>
-      <td nowrap><span style="color: #5f6062;">${datas['data'][i - 1]['학부(과)']}</span></td>
-      <td nowrap><strong><span style="color: white;">${datas['data'][i - 1]['강좌명']}</span></strong></td>
-      <td nowrap><span style="color: #5f6062;">${datas['data'][i - 1]['교수명']}</span></td>
-      <td nowrap><span style="color: white;">${datas['data'][i - 1]['제한인원']}</span></td>
-      <td nowrap><span style="color: white;">${datas['data'][i - 1]['신청인원']}</span></td>
+      <!--<td nowrap><span style="color: #5f6062;">${datas['data'][i - 1]['학부(과)']}</span></td>-->
+      <td nowrap><strong><span style="color: white;">${datas['data'][i - 1]['강좌명']}</span></strong>(${datas['data'][i - 1]['교수명']})</td>
+      <!--<td nowrap><span style="color: #5f6062;">${datas['data'][i - 1]['교수명']}</span></td>-->
+      <td nowrap><span style="color: white;"><span style="color: ${recruitColor(recruit)};">${datas['data'][i - 1]['신청인원']}</span>/${datas['data'][i - 1]['제한인원']}</span></td>
+      <!--<td nowrap><span style="color: white;">${datas['data'][i - 1]['제한인원']}</span></td>
+      <td nowrap><span style="color: white;">${datas['data'][i - 1]['신청인원']}</span></td>-->
       <td align="center" nowrap><b><span style="color: ${recruitColor(recruit)};">${recruit}%</span></b></td>
     </tr>
     `

@@ -53,7 +53,7 @@ app.get('/api/basket', (req, res) => {
 })
 
 app.get('/api/live', (req, res) => {
-  const jsonData = JSON.parse(fs.readFileSync(__dirname + '/convert1.json', 'utf8'))
+  const jsonData = JSON.parse(fs.readFileSync('../sugang-api/response/convert1.json', 'utf8'))
   res.status(200).json(jsonData)
 })
 
@@ -64,6 +64,31 @@ app.get('/api/closed', (req, res) => {
 
 app.get('/api/warning', (req, res) => {
   const jsonData = JSON.parse(fs.readFileSync(__dirname + '/convert4.json', 'utf8'))
+  res.status(200).json(jsonData)
+})
+
+app.get('/api/2023-2', (req, res) => {
+  const jsonData = JSON.parse(fs.readFileSync(__dirname + '/2023-2.json', 'utf8'))
+  res.status(200).json(jsonData)
+})
+
+app.get('/api/2024-1', (req, res) => {
+  const jsonData = JSON.parse(fs.readFileSync(__dirname + '/2024-1.json', 'utf8'))
+  res.status(200).json(jsonData)
+})
+
+app.get('/api/2024-2', (req, res) => {
+  const jsonData = JSON.parse(fs.readFileSync(__dirname + '/2024-2.json', 'utf8'))
+  res.status(200).json(jsonData)
+})
+
+app.get('/api/2025-1', (req, res) => {
+  const jsonData = JSON.parse(fs.readFileSync(__dirname + '/2025-1.json', 'utf8'))
+  res.status(200).json(jsonData)
+})
+
+app.get('/api/2025-2', (req, res) => {
+  const jsonData = JSON.parse(fs.readFileSync(__dirname + '/2025-2.json', 'utf8'))
   res.status(200).json(jsonData)
 })
 

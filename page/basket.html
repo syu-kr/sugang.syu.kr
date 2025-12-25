@@ -2,8 +2,17 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>SYU SUGANG - BASKET</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>삼육대학교 수강신청 장바구니 경쟁률 현황</title>
+    <meta name="viewport" content="user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,width=device-width" />
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="삼육대학교, 수강신청, 장바구니, 경쟁률, 실시간" />
+    <meta name="description" content="삼육대학교 수강신청 장바구니 경쟁률을 실시간으로 확인할 수 있습니다." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="삼육대학교 수강신청 장바구니 경쟁률 현황" />
+    <meta property="og:image" content="https://www.syu.kr/assets/img/banner.png" />
+    <meta property="og:url" content="https://sugang.syu.kr/basket" />
+    <meta property="og:description" content="삼육대학교 수강신청 장바구니 경쟁률을 실시간으로 확인할 수 있습니다." />
+    <link rel="icon" href="https://www.syu.kr/favicon/favicon.ico" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-13FLHMGH10"></script>
     <script>
@@ -15,35 +24,24 @@
 
       gtag('config', 'G-13FLHMGH10')
     </script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-      crossorigin="anonymous"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
-      crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
     <script type="text/javascript" src="/js/basket.js"></script>
     <style>
       @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
       body {
-        background: #212529;
-        color: white;
         font-size: 17px;
         font-family: 'NanumSquare', sans-serif;
-        overflow-y: scroll;
-      }
-      header {
-        padding: 20px 0px 0px 0px;
+        /* overflow-y: scroll; */
+        max-width: 1000px;
+        margin: 0 auto;
       }
       .dropdown-menu {
         left: 50% !important;
         right: auto !important;
         transform: translate(-50%, 0) !important;
       }
-
       .title {
         font-size: 24pt;
       }
@@ -53,7 +51,39 @@
         color: #ff6262;
         display: none;
       }
-      @media (width < 992px) {
+      .table-dark {
+        margin: 0;
+      }
+      table {
+        table-layout: fixed;
+        width: 100%;
+      }
+      .hidden-col {
+        display: none;
+        width: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+      }
+      .col-rank,
+      .col-courseNo {
+        width: 20% !important;
+      }
+      .col-subject {
+        width: 99% !important;
+      }
+      .col-courseNo,
+      .col-count,
+      .col-rate {
+        width: auto;
+      }
+      .update-time {
+        font-size: 9px;
+        color: #999;
+      }
+      .update-time #time {
+        color: #666;
+      }
+      @media (max-width: 992px) {
         /* .table-size {
           height: 1705px;
         } */
@@ -62,6 +92,9 @@
         }
         table {
           font-size: 15px;
+        }
+        #professor {
+          font-size: 13pt;
         }
         .table > :not(caption) > * > * {
           /* padding: 60px; */
@@ -72,7 +105,7 @@
           width: 23px;
         }
       }
-      @media (width < 768px) {
+      @media (max-width: 768px) {
         /* .table-size {
           height: 1250px;
         } */
@@ -85,6 +118,9 @@
         table {
           font-size: 11px;
         }
+        #professor {
+          font-size: 9pt;
+        }
         .table > :not(caption) > * > * {
           padding: 0.2rem 0.2rem;
           /* padding: 60px; */
@@ -94,7 +130,7 @@
           width: 16px;
         }
       }
-      @media (width < 576px) {
+      @media (max-width: 550px) {
         /* .table-size {
           height: 918px;
         } */
@@ -105,7 +141,10 @@
           font-size: 13pt;
         }
         table {
-          font-size: 9px;
+          font-size: 10px !important;
+        }
+        #professor {
+          font-size: 5pt;
         }
         .table > :not(caption) > * > * {
           padding: 0.1rem 0.1rem;
@@ -115,19 +154,189 @@
         .rank {
           width: 13px;
         }
+        label {
+          font-size: 7pt;
+        }
+      }
+    </style>
+    <style>
+      .col-toggle-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin: 10px 0;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .col-toggle-wrapper label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 8px;
+        background: #f5f5f5;
+        border-radius: 6px;
+        cursor: pointer;
+
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+
+      .col-toggle-wrapper label:hover {
+        background: #e0e0e0;
+      }
+
+      .col-toggle-wrapper input[type='checkbox'] {
+        accent-color: #9c9c9c;
+        width: 14px;
+        height: 14px;
+      }
+    </style>
+    <style>
+      input[type='radio'] {
+        display: none;
+      }
+
+      .col-radio-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        margin: 10px 0;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .semester-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 8px;
+        background: #f5f5f5;
+        border-radius: 6px;
+        cursor: pointer;
+
+        white-space: nowrap;
+
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+
+      input[type='radio']:checked + .semester-btn {
+        background-color: #777777;
+        color: white;
+      }
+
+      .semester-btn:hover {
+        background: #e0e0e0;
+      }
+    </style>
+    <style>
+      .header {
+        padding-top: 1.5rem;
+        text-align: center;
+      }
+
+      .title {
+        padding: 0.75rem 0;
+        font-size: 17px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .notice-box {
+        margin: 0.75rem 0;
+        padding: 12px 14px;
+        text-align: center;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        background: #fafafa;
+      }
+
+      .notice-title {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      .notice-link {
+        font-size: 13px;
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .notice-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+    <style>
+      .search-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        margin: 10px 0;
+      }
+
+      .search-label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        background: #f5f5f5;
+        border-radius: 6px;
+        cursor: text;
+        font-size: 7pt;
+        font-weight: bold;
+      }
+
+      .search-label:hover {
+        background: #e0e0e0;
+      }
+
+      .search-label input[type='search'] {
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 7pt;
+        width: 120px;
+      }
+
+      .search-label input[type='search']::placeholder {
+        color: #888888;
+      }
+
+      .search-reset-btn {
+        padding: 4px 8px;
+        background: #f5f5f5;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-size: 7pt;
+        font-weight: bold;
+      }
+
+      .search-reset-btn:hover {
+        background: #e0e0e0;
       }
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Tenth navbar example">
+    <nav class="navbar navbar-expand" aria-label="Tenth navbar example">
       <div class="container-fluid">
         <div class="collapse navbar-collapse justify-content-center" id="dropdown">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">MENU</a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown">
-                <li><a class="dropdown-item" href="/testLogin">모의 수강신청 테스트</a></li>
-                <li><a class="dropdown-item" href="https://lecture.syu.kr">공통(교양) 강의 검색</a></li>
+                <li><a class="dropdown-item" href="/testLogin">모의 수강신청 해보기</a></li>
+                <li><a class="dropdown-item" href="/closed">수강신청 폐강위기 확인하기</a></li>
                 <li><a class="dropdown-item" href="https://www.syu.kr">다양한 서비스 더보기</a></li>
               </ul>
             </li>
@@ -136,51 +345,153 @@
       </div>
     </nav>
     <header>
-      <div style="padding: 3rem; text-align: center">
-        <div>
-          <img src="/logo.png" width="128px" />
+      <div style="text-align: center">
+        <div class="header">
+          <img src="https://www.syu.ac.kr/wp-content/uploads/2018/05/pg_logo3.png" height="60" alt="삼육대학교" />
         </div>
-        <div class="title" style="padding: 3rem; color: white">
-          <strong>삼육대학교 수강신청<br />장바구니 경쟁률 현황</strong>
+        <div class="title">수강신청 장바구니 경쟁률 현황</div>
+        <div class="update-time" id="time"></div>
+        <div class="notice-box">
+          <div class="notice-title">장바구니 <strong>최종 경쟁률</strong> 입니다.</div>
+          <a href="/testLogin" class="notice-link"> 모의 수강신청 바로가기 → </a>
         </div>
-        <hr style="color: white" />
-        <div style="text-align: center; color: yellow; font-size: 9pt">
-          <div><span style="color: white; font-size: 7pt">예비 수강신청: </span> 07월 29일 (월) 10:00 ~ 07월 31일 (수) 17:00</div>
-          <div><span style="color: white; font-size: 7pt">실제 수강신청: </span> 08월 05일 (월) 10:00 ~ 08월 07일 (수) 17:00</div>
+        <div style="margin-block: 25px">
+          <div class="col-radio-wrapper">
+            <input type="radio" id="2025-2" name="semester" value="2025-2" checked />
+            <label for="2025-2" class="semester-btn">'25년 2학기</label>
+            <input type="radio" id="2025-1" name="semester" value="2025-1" />
+            <label for="2025-1" class="semester-btn">'25년 1학기</label>
+            <input type="radio" id="2024-2" name="semester" value="2024-2" />
+            <label for="2024-2" class="semester-btn">'24년 2학기</label>
+            <input type="radio" id="2024-1" name="semester" value="2024-1" />
+            <label for="2024-1" class="semester-btn">'24년 1학기</label>
+            <input type="radio" id="2023-2" name="semester" value="2023-2" />
+            <label for="2023-2" class="semester-btn">'23년 2학기</label>
+          </div>
+          <div class="col-toggle-wrapper">
+            <label><input type="checkbox" class="col-toggle" data-col="courseNo" checked /> 강좌번호</label>
+            <label><input type="checkbox" class="col-toggle" data-col="professor" checked /> 교수명</label>
+            <label><input type="checkbox" class="col-toggle" data-col="count" checked /> 수강인원</label>
+            <label><input type="checkbox" class="col-toggle" data-col="rate" checked /> 경쟁률</label>
+          </div>
+          <div class="search-wrapper">
+            <label class="search-label">
+              <span>검색:</span>
+              <input type="search" id="search" placeholder="강좌번호, 교과목, 교수명" />
+            </label>
+            <button id="search-reset" class="search-reset-btn">검색 초기화</button>
+          </div>
         </div>
-        <hr style="color: white" />
-        <p style="color: red">※ 실시간 집계중..</p>
-        <p id="time" style="color: white"></p>
       </div>
     </header>
-    <!-- <div style="padding: 10px">
-      <span style="font-size: 1.2rem; color: white">검색: </span>
-      <input type="search" id="search" />
-    </div> -->
     <div class="table-size">
       <div class="table-responsive">
-        <div class="drag">표가 짤린 경우 표를 옆으로 드래그 하세요.</div>
-        <table class="table table-dark">
+        <!--<div class="drag"> > 표가 짤린 경우 표를 옆으로 드래그 하세요.</div>-->
+        <table class="table">
           <thead>
             <tr>
-              <th style="text-align: center" scope="col" nowrap>순위</th>
-              <th scope="col" style="color: #5f6062" nowrap>강좌번호</th>
-              <th scope="col" style="color: #5f6062" nowrap>학부(과)</th>
-              <th scope="col" nowrap>과목명</th>
-              <th scope="col" style="color: #5f6062" nowrap>교수명</th>
-              <th scope="col" nowrap>제한인원</th>
-              <th scope="col" nowrap>장바구니</th>
-              <th style="text-align: center" scope="col" nowrap>경쟁률</th>
+              <th class="col-rank" style="text-align: center" scope="col" nowrap>순위</th>
+              <th class="col-courseNo" style="text-align: center" scope="col" style="color: #5f6062" nowrap>강좌번호</th>
+              <!--<th scope="col" style="color: #5f6062" nowrap>학부(과)</th>-->
+              <th class="col-subject" scope="col" nowrap>교과목</th>
+              <!--<th scope="col" style="color: #5f6062;" nowrap>교수명</th>-->
+              <th class="col-count" scope="col" nowrap>수강인원</th>
+              <!--<th scope="col" nowrap>제한인원</th>
+              <th scope="col" nowrap>담은인원</th>-->
+              <th class="col-rate" style="text-align: center" scope="col" nowrap>경쟁률</th>
             </tr>
           </thead>
           <tbody id="info"></tbody>
         </table>
       </div>
     </div>
-    <div id="number-button-wrapper" style="padding: 20px 0px 35px 0px; text-align: center"></div>
-    <div style="background-color: #0000001f; padding: 2rem; text-align: center">
-      <div style="color: white; font-size: 6pt">Copyright(C) 2023 - 2024 SYU KR (김상윤). All rights reserved.</div>
+    <div id="number-button-wrapper" style="margin: 35px 0px 35px 0px; text-align: center; line-height: 1.6"></div>
+    <div style="margin: 2rem; text-align: center">
+      <div style="font-size: 10pt">Copyright(C) 2023 - 2026 SYU KR. All rights reserved.</div>
     </div>
-    <!-- <script type="text/javascript" src="/js/search.js"></script> -->
+    <script>
+      function setRadio() {
+        const urlParams = new URLSearchParams(window.location.search)
+        const year = urlParams.get('year')
+        const semester = urlParams.get('semester')
+
+        if (year && semester) {
+          const selectedValue = `${year}-${semester}`
+          const radios = document.querySelectorAll('input[name="semester"]')
+          radios.forEach((radio) => {
+            if (radio.value === selectedValue) {
+              radio.checked = true
+            }
+          })
+        }
+      }
+
+      const radios = document.querySelectorAll('input[name="semester"]')
+      radios.forEach((radio) => {
+        radio.addEventListener('change', function () {
+          const [year, semester] = this.value.split('-')
+          window.location.href = `?year=${year}&semester=${semester}`
+        })
+      })
+
+      window.onload = setRadio
+    </script>
+    <script>
+      function adjustColumnWidths() {
+        const table = document.querySelector('table')
+        const visibleCols = table.querySelectorAll('th:not(.hidden-col)')
+        const widthPerCol = 100 / visibleCols.length
+        visibleCols.forEach((th) => (th.style.width = widthPerCol + '%'))
+      }
+
+      document.querySelectorAll('.col-toggle').forEach((checkbox) => {
+        checkbox.addEventListener('change', function () {
+          const colClass = 'col-' + this.dataset.col
+          document.querySelectorAll('.' + colClass).forEach((el) => {
+            el.classList.toggle('hidden-col', !checkbox.checked)
+          })
+          adjustColumnWidths() // 숨김 후 폭 재조정
+        })
+      })
+
+      adjustColumnWidths()
+    </script>
+    <script>
+      const colStates = {
+        courseNo: true,
+        professor: true,
+        count: true,
+        rate: true,
+      }
+
+      document.querySelectorAll('.col-toggle').forEach((checkbox) => {
+        colStates[checkbox.dataset.col] = checkbox.checked
+
+        checkbox.addEventListener('change', function () {
+          colStates[this.dataset.col] = this.checked
+        })
+      })
+    </script>
+    <script>
+      const input = document.getElementById('search')
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          const keyword = this.value.trim()
+          const url = new URL(window.location.href)
+          if (keyword) {
+            url.searchParams.set('search', keyword)
+          } else {
+            url.searchParams.delete('search')
+          }
+          window.location.href = url.toString()
+        }
+      })
+      document.getElementById('search-reset').addEventListener('click', () => {
+        input.value = ''
+        const url = new URL(window.location.href)
+        url.searchParams.delete('search')
+        window.location.href = url.toString()
+      })
+    </script>
   </body>
 </html>

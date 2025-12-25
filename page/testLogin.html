@@ -1,10 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!-- saved from url=(0041)http://sugang.suwings.syu.ac.kr/login.jsp -->
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title>삼육대 수강신청</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="삼육대 수강신청" />
+    <meta property="og:description" content="삼육대학교 모의 수강신청 사이트" />
+    <meta property="og:image" content="https://www.syu.kr/assets/img/banner.png" />
+    <meta property="og:url" content="https://sugang.syu.kr/testLogin" />
+    <meta name="keywords" content="삼육대학교 수강신청, 삼육대학교 모의수강신청, 삼육대학교 수강신청 연습">
+    <meta name="description" content="삼육대학교 모의 수강신청 사이트" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-13FLHMGH10"></script>
     <script>
@@ -121,10 +126,10 @@
         class="login login-submit"
         value="login"
         id="imgLogin"
-        onclick="location.href='https://sugang.syu.kr/test1'" />
+        onclick="loading();" />
       <a href="#" onclick="alert('사용할 수 없습니다.')">학번 조회</a>
     </div>
-    <div style="text-align: center; font-size: 6pt">Copyright(C) 2023 - 2024 SYU KR (김상윤). All rights reserved.</div>
+    <div style="text-align: center; font-size: 6pt"></div>
     <div style="padding: 0px 10px 10px 10px; text-align: center">
       <h1
         style="
@@ -135,7 +140,7 @@
           -khtml-user-select: none;
           user-select: none;
         ">
-        본 사이트는 실제 수강신청 사이트가 아닙니다.
+        삼육대학교 모의 수강신청 사이트 입니다.
       </h1>
       <h1
         id="notice"
@@ -147,6 +152,17 @@
           -khtml-user-select: none;
           user-select: none;
         "></h1>
+      <!--<h1
+        style="
+          color: #cccccc;
+          -ms-user-select: none;
+          -moz-user-select: -moz-none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          user-select: none;
+        ">
+        (C) SUWINGS . Powered by SYU KR
+      </h1>-->
     </div>
     <!-- <div style="padding: 3rem; text-align: center; filter: opacity(0.1) drop-shadow(0 0 0 #cccccc)">
       <img src="/mlogo.png" />
@@ -154,6 +170,97 @@
     <!-- <div style="background-color: #0000001f; padding: 2rem; text-align: center">
       <div style="color: white; font-size: 6pt">Copyright(C) 2023 - 2024 SYU KR (김상윤). All rights reserved.</div>
     </div> -->
+    <div id="wait-screen"
+         style="
+           display: none;
+           position: absolute;
+           left: 0;
+           top: 0;
+           width: 100%;
+           height: 100%;
+           background-color: rgba(133, 133, 133, 0.25);
+    "></div>
+    <div
+      id="wait"
+      style="
+        display: none;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -100%);
+      ">
+      <div
+        id="netfunnel"
+        style="
+          background-color: #ffffff;
+          border: 1px solid #9ab6c4;
+          width: 458px;
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+          -khtml-border-radius: 5px;
+          -ms-user-select: none;
+          -moz-user-select: -moz-none;
+          -khtml-user-select: none;
+          -webkit-user-select: none;
+          user-select: none;
+          border-radius: 5px;
+        ">
+        <div
+          style="
+            background-color: #ffffff;
+            border: 6px solid #eaeff3;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -khtml-border-radius: 5px;
+            border-radius: 5px;
+          ">
+          <div style="text-align: right; padding-top: 5px; padding-right: 5px; line-height: 25px">
+            <b><span id="NetFunnel_Loding_Popup_Debug_Alerts" style="text-align: left; color: #ff0000"></span></b>
+            <span style="text-align: right"
+              ><img
+                style="height: 16px; color: black; font-size: 11px"
+                border="0"
+                src="data:image/gif;base64,R0lGODlhJgAQAOe/AB5vlR5ykh9zkyNymCF0lC1xkiN1lSR2liZ3lyd4mDN1lyh5mSp6mjN4lCt7my18nDh5myt+mC59nTd7ly9+njF/nzp+mjKAoDt/mzOBoT+CnkCDn0KFoUOGokSHo0iLpk+SrlSWsl2ZsF6asWeYsWCbsmGcs2OetWSftla4Q1e5RFi6RVm7Rl+6TWK6RnaowXuou3WqvHipwmG8TmS9SGK9T2W+SWq8T2O+UH6rvmS/UX+sv2y+UWXAUoCtwIKuwYOvw4SwxIWxxW/DXYayxnfCXYezx3XDZXbEZom1yY21w4q2you4y3rIaXvJao67zoLKcpq6yonJcpe/zZu/1IrNfY3Nd6C/z5zA1ZrC0KHA0I7QgJ/D2KPD04/SgZbQgZDTgqPH0KbG1pbUiqvH0azM3LDM16PZkaLamLPP2q7Zn7bS3KncobfT3bHcorrW4LnfrbPirrrgrsTY5Lvhr7jkqsba5rzjsLrkt73kscjc6Mvc4rzluMzd49Dg59Hh6MfpvtLi6dPk6s3qxtfk5dTl687rx9Xm7Nbn7dPrz9Ts0Nfo79Xt0dnp8N3q69fv097r7OHq8uXq7d/s7eDt7uDw1ePs9Obs7uTt9eft79/y3uLw8Onu8ODz3+vw8+H14Ozx9O3y9er14u306e7z9uj26u/26+/19+n46/D37PD2+PL3+fL57vP4+/T67/T5/Pf59vX6/fj69/L89/X88Pn7+Pr8+ff9//v9+v78///9+//9//n///z/+/7//P///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAEKAP8ALAAAAAAmABAAAAj+AH2hSuXLl61SsHzp8pVLIcOHBSNKnDgxFY8VnXwlckHH1y2PBiuJakixZElUOlrocGWoBRxfuBS58vWpxRZbJnNKRKXSpqIWdB6x0JFCUZMWKhjpXMrTypkUTlzgWXHkjgsko3R4wbk0J08ovoq0aMEmxZAvW6rM0jGmq05TOqT4MpWiBR8oLfL0UOPqxphbC91SnFUHUMFHcTTJcgMGjShccgYtDUyxYSguWq5EWdXFjq9WWNp4mlJG4ZwrqvRcQVRQTBZfUbRkyULqDZWEug5RcLAAACUIQHxBIkAiUIIFYXz9cHApyQQJBT1Q8CVAwgIGiGAgIJXrlu4RBgXsUQjiKxKBEn8WOMCgCgiDS0okMBDhSzp1AxFjbGd4SH4BDpFQENwkBIzwBwIgSLCBD+8lIcEHC6TxwXQBSCCAAZ68gMApBenmQRBPIEIBDL40ct6BP5AhQQUMSLKEBH5wsGIFvgzQgBFCvCLDhgyJWEJBjkigQRonJADDHwns4EsIDDBASRIR9AGKBBNMJ4ACa5jRSgwM/EAEJIhcYEJEKEhgpgaq9OHADwVxQAEmTFDQhy9lLJCBLwdYQIEFjeRAwZ973LIJKBI5QkghqtwSSyYc+kIKJ7eowkktH2XCiS+WcKKpLadomkksAQEAOw==" />
+            </span>
+          </div>
+          <div style="padding-top: 0px; padding-left: 25px; padding-right: 25px">
+            <div style="text-align: left; font-size: 12pt; color: #001f6c; height: 22px">
+              <b>서비스 <span style="color: #013dc1">접속대기 중</span>입니다.</b>
+            </div>
+            <div style="text-align: right; font-size: 9pt; color: #4d4b4c; padding-top: 4px; height: 17px">
+              <b
+                >예상대기시간 : <span style="text-decoration: underline">0시간 0분 <span id="time">-</span>초</span></b
+              >
+            </div>
+            <div
+              style="padding-top: 6px; padding-bottom: 6px; vertical-align: center; width: 400px; height: 20px"
+              id="NetFunnel_Loading_Popup_Progressbar">
+              <div style="width: 400px; height: 20px; background-color: #b6dffd">
+                <div id="progressbar"></div>
+              </div>
+            </div>
+            <div style="background-color: #ededed; width: 400px; padding-bottom: 8px; overflow: hidden">
+              <div style="padding-left: 5px">
+                <div style="text-align: left; font-size: 8pt; color: #4d4b4c; padding: 3px; padding-top: 10px; height: 10px">
+                  고객님 앞에 <b><span style="color: #2a509b; text-decoration: underline">1</span></b> 명, 뒤에
+                  <b><span style="color: #2a509b; text-decoration: underline">1</span></b> 명의 대기자가 있습니다.
+                </div>
+                <div style="text-align: left; font-size: 8pt; color: #4d4b4c; padding: 3px; height: 10px">
+                  현재 접속 사용자가 많아 대기 중이며, 잠시만 기다리시면
+                </div>
+                <div style="text-align: left; font-size: 8pt; color: #4d4b4c; padding: 3px; height: 10px">서비스로 자동 접속 됩니다.</div>
+                <div style="text-align: center; font-size: 9pt; color: #2a509b; padding-top: 10px">
+                  <b
+                    >※ 재 접속하시면 대기시간이 더 길어집니다. <span id="NetFunnel_Countdown_Stop" style="cursor: pointer">[중지]</span>
+                  </b>
+                </div>
+              </div>
+            </div>
+            <div style="height: 5px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script>
       const filter = 'win16|win32|win64|mac|macintel'
       if (navigator.platform) {
@@ -162,6 +269,27 @@
         } else {
           document.getElementById('notice').innerText = '브라우저 전체 화면을 권장합니다.'
         }
+      }
+    </script>
+    <script>
+      function loading() {
+        document.getElementById('wait-screen').style.display = '';
+        const loading = document.getElementById('wait')
+        loading.style.display = ''
+        
+        const time = 3
+        let percent = 0
+        let realTime = time
+        
+        const checker = setInterval(function () {
+          percent += 400 / time
+          document.getElementById('time').innerText = realTime
+          document.getElementById('progressbar').innerHTML =
+            '<div style="width: ' + (percent > 390 ? 400 : percent) + 'px; height: 20px; background-color: #2a509b"></div>'
+          if (realTime-- <= 0) {
+            location.href='https://sugang.syu.kr/test1'
+          }
+        }, 1000)
       }
     </script>
   </body>
