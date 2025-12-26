@@ -47,17 +47,56 @@ function convertTime(datetimeStr) {
 }
 
 const setPageButtons = (pageNumber) => {
-  let number_tag = ''
+  const totalPages = Math.ceil(datas.data.length / COUNT_PER_PAGE)
+  const range = 2
+  let html = ''
 
-  for (let i = 1; i <= Math.ceil(datas['data'].length / COUNT_PER_PAGE); i++) {
-    if (i == pageNumber) {
-      number_tag += `<div style="display: inline-block; cursor: pointer; width: 30px; margin: 5px; color: black; font-weight: bold; onclick="setPageOf(${i})"> ${i} </div>`
-    } else {
-      number_tag += `<div style="display: inline-block; cursor: pointer; width: 30px; margin: 5px; color: gray;" onclick="setPageOf(${i})"> ${i} </div>`
-    }
+  // 이전 버튼
+  if (pageNumber > 1) {
+    html += `<div class="nav" onclick="setPageOf(${pageNumber - 1})">&lt;</div>`
   }
 
-  document.getElementById('number-button-wrapper').innerHTML = number_tag
+  // 첫 페이지
+  html += pageButton(1, pageNumber)
+
+  // 앞쪽 ...
+  if (pageNumber > range + 2) {
+    html += `<div class="dots">...</div>`
+  }
+
+  // 가운데 페이지들
+  const start = Math.max(2, pageNumber - range)
+  const end = Math.min(totalPages - 1, pageNumber + range)
+
+  for (let i = start; i <= end; i++) {
+    html += pageButton(i, pageNumber)
+  }
+
+  // 뒤쪽 ...
+  if (pageNumber < totalPages - (range + 1)) {
+    html += `<div class="dots">...</div>`
+  }
+
+  // 마지막 페이지
+  if (totalPages > 1) {
+    html += pageButton(totalPages, pageNumber)
+  }
+
+  // 다음 버튼
+  if (pageNumber < totalPages) {
+    html += `<div class="nav" onclick="setPageOf(${pageNumber + 1})">&gt;</div>`
+  }
+
+  document.getElementById('number-button-wrapper').innerHTML = html
+}
+
+const pageButton = (i, current) => {
+  return `
+    <div class="page ${i === current ? 'active' : ''}"
+         onclick="setPageOf(${i})">
+      ${i}
+    </div>
+  `
 }
 
 const setPageOf = (pageNumber) => {

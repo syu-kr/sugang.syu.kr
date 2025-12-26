@@ -162,6 +162,29 @@
         .search-label input[type='search'] {
           width: 130px !important;
         }
+
+        @media (max-width: 550px) {
+          #number-button-wrapper {
+            gap: 4px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+          }
+
+          #number-button-wrapper .page,
+          #number-button-wrapper .nav,
+          #number-button-wrapper .dots {
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            font-size: 14px;
+            text-align: center;
+          }
+
+          #number-button-wrapper .dots {
+            line-height: 28px;
+            font-size: 14px;
+          }
+        }
       }
     </style>
     <style>
@@ -329,6 +352,86 @@
         background: #e0e0e0;
       }
     </style>
+    <style>
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin: 25px 0 35px;
+        flex-wrap: wrap;
+
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+
+      .pagination div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 36px;
+
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        background: #fff;
+        color: #666;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .pagination div:hover {
+        background: #f0f0f0;
+        color: #000;
+      }
+
+      .pagination div.active {
+        background: #222;
+        color: #fff;
+        border-color: #222;
+      }
+
+      #number-button-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .nav {
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .page,
+      .nav {
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 6px;
+      }
+
+      .page.active {
+        background: #222;
+        color: #fff;
+      }
+
+      .dots {
+        padding: 0 6px;
+        line-height: 36px;
+        color: #999;
+        pointer-events: none;
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-expand" aria-label="Tenth navbar example">
@@ -408,7 +511,7 @@
         </table>
       </div>
     </div>
-    <div id="number-button-wrapper" style="margin: 25px 0px 35px 0px; text-align: center; line-height: 1.6"></div>
+    <div class="pagination" id="number-button-wrapper"></div>
     <div style="margin-block: 2rem; text-align: center">
       <div style="font-size: 10pt">Copyright(C) 2023 - 2026 SYU KR. All rights reserved.</div>
       <div style="font-size: 10pt">DEVELOPER KIM SANG YUN.</div>
